@@ -1,0 +1,15 @@
+<header>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" style="color: white;">
+    <a class="navbar-brand" href="<%= lessons_path %>">Lesson Plans</a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <%= link_to "Lessons", lessons_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'New Lesson', new_lesson_path, class: "nav-link" %>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
