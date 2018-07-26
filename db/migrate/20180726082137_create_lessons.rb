@@ -19,8 +19,10 @@ class CreateLessons < ActiveRecord::Migration[5.2]
       t.text :assess_content
       t.integer :review_time
       t.text :review_content
-
+      t.references :grade, foreign_key: true
+      t.references :subject, foreign_key: true
       t.timestamps
     end
+    add_index :lessons, [:grade_id, :subject_id, :created_at]
   end
 end

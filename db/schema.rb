@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_24_021319) do
+ActiveRecord::Schema.define(version: 2018_07_26_082137) do
+
+  create_table "grades", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "lessons", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "title_lesson"
@@ -31,10 +37,21 @@ ActiveRecord::Schema.define(version: 2018_07_24_021319) do
     t.text "assess_content"
     t.integer "review_time"
     t.text "review_content"
+    t.bigint "grade_id"
+    t.bigint "subject_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "grade"
-    t.string "subject"
+    t.index ["grade_id", "subject_id", "created_at"], name: "index_lessons_on_grade_id_and_subject_id_and_created_at"
+    t.index ["grade_id"], name: "index_lessons_on_grade_id"
+    t.index ["subject_id"], name: "index_lessons_on_subject_id"
   end
 
+  create_table "subjects", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "lessons", "grades"
+  add_foreign_key "lessons", "subjects"
 end

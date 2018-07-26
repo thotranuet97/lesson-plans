@@ -8,11 +8,11 @@
       <div class="col-sm-10">
         <div>
           Grades
-          <%= select_tag :grade, options_for_select(@grades), class: "custom-select" %>
+          <%= select_tag :grade, options_for_select([["-None-", 0]] + @grades), class: "custom-select" %>
         </div><br>
         <div>
           Subjects
-          <%= select_tag :subject, options_for_select(@subjects), class: "custom-select" %>
+          <%= select_tag :subject, options_for_select([["-None-", 0]] + @subjects), class: "custom-select" %>
         </div><br>
         <div>
           <%= submit_tag "Search", class: "btn btn-primary" %>

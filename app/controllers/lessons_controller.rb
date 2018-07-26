@@ -5,7 +5,7 @@ class LessonsController < ApplicationController
   # GET /lessons
   # GET /lessons.json
   def index
-    @lessons = Lesson.where("grade LIKE ? AND subject LIKE ?", "%#{params[:grade]}%", "%#{params[:subject]}%")
+    @lessons = Lesson.where("grade_id LIKE ? AND subject_id LIKE ?", "%#{params[:grade]}%", "%#{params[:subject]}%")
     @grades = grades_for_select
     @subjects = subjects_for_select
   end
@@ -18,7 +18,8 @@ class LessonsController < ApplicationController
   # GET /lessons/new
   def new
     @lesson = Lesson.new
-
+    @grades = grades_for_select
+    @subjects = subjects_for_select
   end
 
   # GET /lessons/1/edit
