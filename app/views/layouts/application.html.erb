@@ -1,15 +1,22 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>SampleApp</title>
+    <!-- <title>SampleApp</title> -->
+    <title><%= yield(:title) %> | Lesson Plans</title>
       <%= render "layouts/rails_default" %>
   </head>
 
   <body>
-    <%= render "layouts/header" %>
+    <%= render "layouts/header" %> <br>
     <div class="container" >
-      <% flash.each do |message_type, message| %>
+      <!-- <% flash.each do |message_type, message| %>
         <div class="alert alert-<%= message_type %>"><%= message %></div>
+      <% end %> -->
+      <% if notice %>
+        <p class="alert alert-success"><%= notice %></p>
+      <% end %>
+      <% if alert %>
+        <p class="alert alert-danger"><%= alert %></p>
       <% end %>
       <%= yield %>
       <%= render 'layouts/footer' %>
