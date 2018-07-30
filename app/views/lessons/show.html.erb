@@ -92,12 +92,12 @@
 
 <p>
   <strong>Grade:</strong>
-  <%= @lesson.grade %>
+  <%= @lesson.grade.name %>
 </p>
 
 <p>
   <strong>Subject:</strong>
-  <%= @lesson.subject %>
+  <%= @lesson.subject.name %>
 </p>
 
 <%= link_to 'Edit', edit_lesson_path(@lesson) %> |
