@@ -5,7 +5,11 @@ class LessonsController < ApplicationController
   # GET /lessons
   # GET /lessons.json
   def index
-    @lessons = Lesson.where("grade_id LIKE ? AND subject_id LIKE ?", "%#{params[:grade]}%", "%#{params[:subject]}%")
+
+    @lessons = Lesson.where(nil)
+    @lessons = @lessons.grade(params[:grade]) if params[:grade].present?
+    @lessons = @lessons.subject(params[:subject]) if params[:subject].present?
+
     @grades = grades_for_select
     @subjects = subjects_for_select
   end
