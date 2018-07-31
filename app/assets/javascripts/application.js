@@ -18,3 +18,33 @@
 //= require popper
 //= require bootstrap
 //= require bootstrap-sprockets
+
+$(document).ready(function () {
+    // $(".click-toggle").click(function(){
+    //     $(this).next().toggle('3000');
+    //     $(this).toggleClass("fa-angle-down fa-angle-right");
+    // });
+
+    /* Ajax filter category */
+    // $('.click-cat').click(function () {
+    //     event.preventDefault();
+    //     var cat_id = $(this).attr('data_id');
+    //
+    //     $.ajax({
+    //         url: "/posts/",
+    //         method: "POST",
+    //         data: {
+    //             id: cat_id
+    //         },
+    //         success: function () {
+    //             $('.post-archive').html('<div>'+cat_id+'</div>');
+    //         }
+    //     })
+    // })
+
+    $('.filter-list li input').on('change', function() {
+        var input_name = $(this).attr('name');
+        var group = ".filter-list li input[name='" + input_name + "']"
+            $(group).not(this).prop('checked', false);
+    });
+})

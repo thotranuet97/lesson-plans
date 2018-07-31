@@ -5,9 +5,11 @@ class LessonsController < ApplicationController
   # GET /lessons
   # GET /lessons.json
   def index
-    @lessons = Lesson.where("grade_id LIKE ? AND subject_id LIKE ?", params[:grade], params[:subject])
-    @grades = grades_for_select
-    @subjects = subjects_for_select
+    @grades = Grade.all
+    @subjects = Subject.all
+    @lessons = Lesson.where(nil)
+    @lessons = @lessons.grade_id(params[:grade_id]) if params[:grade_id].present?
+    @lessons = @lessons.subject_id(params[:subject_id]) if params[:subject_id].present?    
   end
 
   # GET /lessons/1
@@ -18,8 +20,6 @@ class LessonsController < ApplicationController
   # GET /lessons/new
   def new
     @lesson = Lesson.new
-    @grades = grades_for_select
-    @subjects = subjects_for_select
   end
 
   # GET /lessons/1/edit
@@ -74,7 +74,7 @@ class LessonsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def lesson_params
-      params.require(:lesson).permit(:grade, :subject, :title_lesson, :title_unit, :title_content,
+      params.require(:lesson).permit(:grade_id, :subject_id, :title_lesson, :title_unit, :title_content,
       :last_lesson_time, :last_lesson_content, :object, :intro_time, :intro_content, :practice_time,
       :practice_content, :working_time, :working_content, :diff_support, :diff_enrich, :assess_time,
       :assess_content, :review_time, :review_content)
