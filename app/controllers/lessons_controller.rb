@@ -5,13 +5,11 @@ class LessonsController < ApplicationController
   # GET /lessons
   # GET /lessons.json
   def index
-
+    @grades = Grade.all
+    @subjects = Subject.all
     @lessons = Lesson.where(nil)
-    @lessons = @lessons.grade(params[:grade]) if params[:grade].present?
-    @lessons = @lessons.subject(params[:subject]) if params[:subject].present?
-
-    @grades = grades_for_select
-    @subjects = subjects_for_select
+    @lessons = @lessons.grade_id(params[:grade_id]) if params[:grade_id].present?
+    @lessons = @lessons.subject_id(params[:subject_id]) if params[:subject_id].present?    
   end
 
   # GET /lessons/1
@@ -22,8 +20,6 @@ class LessonsController < ApplicationController
   # GET /lessons/new
   def new
     @lesson = Lesson.new
-    @grades = grades_for_select
-    @subjects = subjects_for_select
   end
 
   # GET /lessons/1/edit
