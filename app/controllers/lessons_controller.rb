@@ -5,11 +5,7 @@ class LessonsController < ApplicationController
   # GET /lessons
   # GET /lessons.json
   def index
-
-    @lessons = Lesson.where(nil)
-    @lessons = @lessons.grade(params[:grade]) if params[:grade].present?
-    @lessons = @lessons.subject(params[:subject]) if params[:subject].present?
-
+    @lessons = Lesson.filter(params.slice(:grade, :subject))
     @grades = grades_for_select
     @subjects = subjects_for_select
   end

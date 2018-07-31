@@ -1,4 +1,5 @@
 class Lesson < ApplicationRecord
+  include Filterable
   belongs_to :grade
   belongs_to :subject
 
